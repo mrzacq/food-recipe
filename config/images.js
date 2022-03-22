@@ -1,0 +1,20 @@
+export const IMAGES = {
+  loginBackground: require("../assets/images/system/login-background.png"),
+  recipe: require("../assets/images/recipes/recipe.png"),
+  spagetti: require("../assets/images/recipes/spagetti.png"),
+  satay: require("../assets/images/recipes/satay.png"),
+  laksa: require("../assets/images/recipes/laksa.png"),
+  nasiLemak: require("../assets/images/recipes/nasi-lemak.webp"),
+
+  profile: require("../assets/images/dummy_profiles/profile.png"),
+  UserProfile1: require("../assets/images/dummy_profiles/profile-pic-1.png"),
+  UserProfile2: require("../assets/images/dummy_profiles/profile-pic-2.png"),
+  UserProfile3: require("../assets/images/dummy_profiles/profile-pic-3.png"),
+  UserProfile4: require("../assets/images/dummy_profiles/profile-pic-4.png"),
+  UserProfile5: require("../assets/images/dummy_profiles/profile-pic-5.png"),
+  UserProfile6: require("../assets/images/dummy_profiles/profile-pic-6.png"),
+  UserProfile7: require("../assets/images/dummy_profiles/profile-pic-7.png"),
+  UserProfile8: require("../assets/images/dummy_profiles/profile-pic-8.png"),
+  UserProfile9: require("../assets/images/dummy_profiles/profile-pic-9.png"),
+  UserProfile10: require("../assets/images/dummy_profiles/profile-pic-10.png"),
+};
