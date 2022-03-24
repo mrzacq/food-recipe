@@ -143,10 +143,37 @@ const Home = ({ navigation }) => {
                   horizontal
                   showsHorizontalScrollIndicator={false}
                   keyExtractor={(el) => `${el.id}`}
-                  renderItem={({ item, i }) => {
-                    return <TrendingCard item={item} />;
+                  renderItem={({ item, index }) => {
+                    return (
+                      <TrendingCard
+                        item={item}
+                        containerStyle={{
+                          marginLeft: index === 0 ? SIZES.padding : 0,
+                        }}
+                        onPress={() =>
+                          navigation.navigate("Recipe", { recipe: item })
+                        }
+                      />
+                    );
                   }}
                 />
+              </View>
+
+              {/* category header */}
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginTop: 20,
+                  marginHorizontal: SIZES.padding,
+                }}
+              >
+                <Text style={{ flex: 1, ...FONTS.h2 }}>Category</Text>
+                <TouchableOpacity>
+                  <Text style={{ color: COLORS.gray, ...FONTS.body4 }}>
+                    view all
+                  </Text>
+                </TouchableOpacity>
               </View>
             </View>
           );

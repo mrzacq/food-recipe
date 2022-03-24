@@ -56,7 +56,7 @@ const Tabs = () => {
         component={Home}
         options={{
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={ICONS.setting} />
+            <TabIcon focused={focused} icon={ICONS.settings} />
           ),
         }}
       />
