@@ -2,7 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { Home, Search } from "../screens";
-import { COLORS, ICONS } from "../config";
+import { COLORS, ICONS, os } from "../config";
 import { TabIcon } from "../components";
 
 const Tab = createBottomTabNavigator();
@@ -12,11 +12,12 @@ const Tabs = () => {
     <Tab.Navigator
       tabBarOptions={{
         showLabel: false,
+        keyboardHidesTabBar: true,
         style: {
           position: "absolute",
-          height: 100,
+          height: os === "ios" ? 100 : 60,
           borderTopColor: "transparent",
-          backgroundColor: COLORS.white,
+          backgroundColor: COLORS.lightGray,
           bottom: 0,
           left: 0,
           right: 0,

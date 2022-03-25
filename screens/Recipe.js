@@ -1,19 +1,23 @@
 import { BlurView } from "@react-native-community/blur";
 import React from "react";
-import {
-  View,
-  Text,
-  Button,
-  Animated,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, Animated, Image, TouchableOpacity } from "react-native";
 import { Viewers } from "../components";
 
-import { COLORS, FONTS, ICONS, SIZES } from "../config";
+import { COLORS, FONTS, ICONS, os, SIZES } from "../config";
 
 const Recipe = ({ navigation, route }) => {
   const [recipe, setRecipe] = React.useState("");
+
+  const style =
+    os === "ios"
+      ? {
+          paddingHorizontal: SIZES.padding,
+          paddingBottom: 10,
+          height: 90,
+        }
+      : {
+          padding: SIZES.padding,
+        };
 
   const scrollY = React.useRef(new Animated.Value(0)).current;
   const HEADER_HEIGHT = 350;
@@ -76,53 +80,106 @@ const Recipe = ({ navigation, route }) => {
             ],
           }}
         >
-          <BlurView
-            style={{ flex: 1, borderRadius: SIZES.radius }}
-            blurType="dark"
-          >
-            <View
-              style={{ flex: 1, flexDirection: "row", alignItems: "center" }}
+          {os === "ios" ? (
+            <BlurView
+              style={{ flex: 1, borderRadius: SIZES.radius }}
+              blurType="dark"
             >
-              <View style={{ width: 40, height: 40, marginLeft: 20 }}>
-                <Image
-                  source={recipe?.author?.profilePic}
-                  style={{ width: 40, height: 40, borderRadius: 20 }}
-                ></Image>
-              </View>
-
-              <View style={{ flex: 1, marginHorizontal: 20 }}>
-                <Text style={{ color: COLORS.lightGray2, ...FONTS.body4 }}>
-                  Recipe by
-                </Text>
-                <Text style={{ color: COLORS.white2, ...FONTS.h3 }}>
-                  {recipe?.author?.name}
-                </Text>
-              </View>
-
-              <TouchableOpacity
-                style={{
-                  width: 30,
-                  height: 30,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginRight: 20,
-                  borderRadius: 5,
-                  borderWidth: 1,
-                  borderColor: COLORS.lightGreen1,
-                }}
-                onPress={() => console.log("profile")}
+              <View
+                style={{ flex: 1, flexDirection: "row", alignItems: "center" }}
               >
-                <Image
-                  source={ICONS.rightArrow}
+                <View style={{ width: 40, height: 40, marginLeft: 20 }}>
+                  <Image
+                    source={recipe?.author?.profilePic}
+                    style={{ width: 40, height: 40, borderRadius: 20 }}
+                  ></Image>
+                </View>
+
+                <View style={{ flex: 1, marginHorizontal: 20 }}>
+                  <Text style={{ color: COLORS.lightGray2, ...FONTS.body4 }}>
+                    Recipe by
+                  </Text>
+                  <Text style={{ color: COLORS.white2, ...FONTS.h3 }}>
+                    {recipe?.author?.name}
+                  </Text>
+                </View>
+
+                <TouchableOpacity
                   style={{
-                    width: 15,
-                    height: 15,
-                    tintColor: COLORS.lightGreen1,
+                    width: 30,
+                    height: 30,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginRight: 20,
+                    borderRadius: 5,
+                    borderWidth: 1,
+                    borderColor: COLORS.lightGreen1,
                   }}
-                ></Image>
-              </TouchableOpacity>
+                  onPress={() => console.log("profile")}
+                >
+                  <Image
+                    source={ICONS.rightArrow}
+                    style={{
+                      width: 15,
+                      height: 15,
+                      tintColor: COLORS.lightGreen1,
+                    }}
+                  ></Image>
+                </TouchableOpacity>
+              </View>
+            </BlurView>
+          ) : (
+            <View
+              style={{
+                flex: 1,
+                borderRadius: SIZES.radius * 1.25,
+                backgroundColor: COLORS.transparentBlack5,
+              }}
+            >
+              <View
+                style={{ flex: 1, flexDirection: "row", alignItems: "center" }}
+              >
+                <View style={{ width: 40, height: 40, marginLeft: 20 }}>
+                  <Image
+                    source={recipe?.author?.profilePic}
+                    style={{ width: 40, height: 40, borderRadius: 20 }}
+                  ></Image>
+                </View>
+
+                <View style={{ flex: 1, marginHorizontal: 20 }}>
+                  <Text style={{ color: COLORS.lightGray, ...FONTS.body4 }}>
+                    Recipe by
+                  </Text>
+                  <Text style={{ color: COLORS.white2, ...FONTS.h3 }}>
+                    {recipe?.author?.name}
+                  </Text>
+                </View>
+
+                <TouchableOpacity
+                  style={{
+                    width: 30,
+                    height: 30,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginRight: 20,
+                    borderRadius: 5,
+                    borderWidth: 1,
+                    borderColor: COLORS.lightGreen1,
+                  }}
+                  onPress={() => console.log("profile")}
+                >
+                  <Image
+                    source={ICONS.rightArrow}
+                    style={{
+                      width: 15,
+                      height: 15,
+                      tintColor: COLORS.lightGray,
+                    }}
+                  ></Image>
+                </TouchableOpacity>
+              </View>
             </View>
-          </BlurView>
+          )}
         </Animated.View>
       </View>
     );
@@ -173,6 +230,7 @@ const Recipe = ({ navigation, route }) => {
       </View>
     );
   };
+
   return (
     <View
       style={{
@@ -237,7 +295,27 @@ const Recipe = ({ navigation, route }) => {
             </View>
           </View>
         )}
-        ListFooterComponent={<View style={{ marginBottom: 100 }}></View>}
+        ListFooterComponent={
+          <View style={{ marginBottom: 100 }}>
+            {[1, 2, 3, 4, 5].map((num) => {
+              return (
+                <Text
+                  key={num}
+                  style={{
+                    paddingHorizontal: SIZES.padding,
+                    paddingVertical: SIZES.base,
+                    textAlign: "center",
+                  }}
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga
+                  commodi eveniet accusamus. Eaque, odit officiis. Doloremque
+                  minus inventore itaque! Nostrum in molestiae nesciunt vero.
+                  Nisi repellat deleniti aperiam voluptas culpa.
+                </Text>
+              );
+            })}
+          </View>
+        }
       />
 
       {/* header bar */}
@@ -247,12 +325,11 @@ const Recipe = ({ navigation, route }) => {
           top: 0,
           left: 0,
           right: 0,
-          height: 90,
           flexDirection: "row",
-          alignItems: "flex-end",
           justifyContent: "space-between",
-          paddingHorizontal: SIZES.padding,
-          paddingBottom: 10,
+
+          alignItems: os === "ios" ? "flex-end" : "center",
+          ...style,
         }}
       >
         {/* screen overlay */}
@@ -280,7 +357,7 @@ const Recipe = ({ navigation, route }) => {
             right: 0,
             bottom: 0,
             alignItems: "center",
-            justifyContent: "flex-end",
+            justifyContent: os === "ios" ? "flex-end" : "center",
             paddingBottom: 10,
             opacity: scrollY.interpolate({
               inputRange: [HEADER_HEIGHT - 100, HEADER_HEIGHT - 50],

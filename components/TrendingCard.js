@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
-import { COLORS, FONTS, ICONS, SIZES } from "../config";
+import { COLORS, FONTS, ICONS, os, SIZES } from "../config";
 import { BlurView } from "@react-native-community/blur";
 
 export default function TrendingCard({ containerStyle, item, onPress }) {
@@ -27,7 +27,7 @@ export default function TrendingCard({ containerStyle, item, onPress }) {
           position: "absolute",
           top: 20,
           left: 15,
-          backgroundColor: COLORS.transparentGray,
+          backgroundColor: COLORS.transparentBlack5,
           paddingHorizontal: SIZES.radius,
           paddingVertical: 5,
           borderRadius: SIZES.radius,
@@ -38,57 +38,111 @@ export default function TrendingCard({ containerStyle, item, onPress }) {
 
       {/* recipe card info */}
       {/* <RecipeCardInfo item={item} /> */}
-      <BlurView
-        blurType="dark"
-        style={{
-          position: "absolute",
-          bottom: 10,
-          left: 10,
-          right: 10,
-          height: 100,
-          paddingVertical: SIZES.radius,
-          paddingHorizontal: SIZES.base,
-          borderRadius: SIZES.radius,
-        }}
-      >
-        <View
+      {os === "ios" ? (
+        <BlurView
+          blurType="dark"
           style={{
-            flex: 1,
+            position: "absolute",
+            bottom: 10,
+            left: 10,
+            right: 10,
+            height: 100,
+            paddingVertical: SIZES.radius,
+            paddingHorizontal: SIZES.base,
+            borderRadius: SIZES.radius,
           }}
         >
           <View
             style={{
               flex: 1,
-              flexDirection: "row",
-              justifyContent: "space-between",
             }}
           >
-            <Text
+            <View
               style={{
-                width: "70%",
-                color: COLORS.white,
-                ...FONTS.h3,
-                fontSize: 18,
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "space-between",
               }}
             >
-              {item.name}
-            </Text>
-            <Image
-              source={item.isBookmark ? ICONS.bookmarkFilled : ICONS.bookmark}
-              style={{
-                width: 20,
-                height: 20,
-                marginRight: SIZES.base,
-                tintColor: COLORS.darkGreen,
-              }}
-            ></Image>
-          </View>
+              <Text
+                style={{
+                  width: "70%",
+                  color: COLORS.white,
+                  ...FONTS.h3,
+                  fontSize: 18,
+                }}
+              >
+                {item.name}
+              </Text>
+              <Image
+                source={item.isBookmark ? ICONS.bookmarkFilled : ICONS.bookmark}
+                style={{
+                  width: 20,
+                  height: 20,
+                  marginRight: SIZES.base,
+                  tintColor: COLORS.darkGreen,
+                }}
+              ></Image>
+            </View>
 
-          <Text style={{ color: COLORS.lightGray, ...FONTS.body4 }}>
-            {item.duration} | {item.serving} Serving
-          </Text>
+            <Text style={{ color: COLORS.lightGray, ...FONTS.body4 }}>
+              {item.duration} | {item.serving} Serving
+            </Text>
+          </View>
+        </BlurView>
+      ) : (
+        <View
+          style={{
+            position: "absolute",
+            bottom: 10,
+            left: 10,
+            right: 10,
+            height: 100,
+            paddingVertical: SIZES.radius,
+            paddingHorizontal: SIZES.base,
+            borderRadius: SIZES.radius,
+            backgroundColor: COLORS.transparentBlack5,
+          }}
+        >
+          <View
+            style={{
+              flex: 1,
+            }}
+          >
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <Text
+                style={{
+                  width: "70%",
+                  color: COLORS.white,
+                  ...FONTS.h3,
+                  fontSize: 18,
+                }}
+              >
+                {item.name}
+              </Text>
+              <Image
+                source={item.isBookmark ? ICONS.bookmarkFilled : ICONS.bookmark}
+                style={{
+                  width: 20,
+                  height: 20,
+                  marginRight: SIZES.base,
+                  tintColor: COLORS.darkGreen,
+                }}
+              ></Image>
+            </View>
+
+            <Text style={{ color: COLORS.lightGray, ...FONTS.body4 }}>
+              {item.duration} | {item.serving} Serving
+            </Text>
+          </View>
         </View>
-      </BlurView>
+      )}
     </TouchableOpacity>
   );
 }

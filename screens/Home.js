@@ -81,7 +81,12 @@ const Home = ({ navigation }) => {
                   style={{ width: 20, height: 20, tintColor: COLORS.gray }}
                 />
                 <TextInput
-                  style={{ marginLeft: SIZES.radius, ...FONTS.body3 }}
+                  style={{
+                    marginLeft: SIZES.radius,
+                    ...FONTS.body3,
+                    width: "100%",
+                    color: COLORS.black,
+                  }}
                   placeholder="Search"
                   placeholderTextColor={COLORS.gray}
                 />
@@ -110,7 +115,7 @@ const Home = ({ navigation }) => {
                   />
                 </View>
                 <View style={{ flex: 1, paddingVertical: SIZES.radius }}>
-                  <Text style={{ width: "70%", ...FONTS.body4 }}>
+                  <Text style={{ width: "80%", ...FONTS.body4 }}>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Placeat?
                   </Text>
@@ -142,6 +147,7 @@ const Home = ({ navigation }) => {
                   data={trendingRecipes}
                   horizontal
                   showsHorizontalScrollIndicator={false}
+                  snapToAlignment="center"
                   keyExtractor={(el) => `${el.id}`}
                   renderItem={({ item, index }) => {
                     return (

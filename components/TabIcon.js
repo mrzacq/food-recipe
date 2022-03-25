@@ -1,6 +1,6 @@
 import { View, Image } from "react-native";
 import React from "react";
-import { COLORS } from "../config";
+import { COLORS, os } from "../config";
 
 export default function TabIcon({ focused, icon }) {
   return (
@@ -8,7 +8,7 @@ export default function TabIcon({ focused, icon }) {
       style={{
         alignItems: "center",
         justifyContent: "center",
-        height: 80,
+        height: os === "ios" ? 80 : 60,
         width: 50,
       }}
     >
