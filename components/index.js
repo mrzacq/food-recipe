@@ -3,3 +3,4 @@ export { default as TabIcon } from "./TabIcon.js";
 export { default as CategoryCard } from "./CategoryCard.js";
 export { default as TrendingCard } from "./TrendingCard.js";
 export { default as Viewers } from "./Viewers.js";
+export { default as ModalSignUp } from "./Modals/SignUp";

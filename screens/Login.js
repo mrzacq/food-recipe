@@ -1,17 +1,29 @@
 import React from "react";
-import { View, Text, Alert, StatusBar, ImageBackground } from "react-native";
+import {
+  View,
+  Text,
+  Alert,
+  StatusBar,
+  ImageBackground,
+  Modal,
+  TouchableOpacity,
+} from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { COLORS, FONTS, IMAGES, SIZES } from "../config";
-import { CustomButton } from "../components";
+import { CustomButton, ModalSignUp } from "../components";
 
 const Login = ({ navigation }) => {
+  const [showSignUp, setShowSignUp] = React.useState(false);
+
   const pressSignUp = () => {
-    Alert.alert("Sign Up Failed", "Please try again");
+    setShowSignUp(true);
   };
 
   return (
     <View style={{ flex: 1, backgroundColor: COLORS.black }}>
       <StatusBar barStyle="light-content" />
+
+      <ModalSignUp showSignUp={showSignUp} setShowSignUp={setShowSignUp} />
 
       {/* header */}
       <View style={{ height: SIZES.height > 700 ? "65%" : "60%" }}>
